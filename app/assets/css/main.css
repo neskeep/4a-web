@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════
+   ESTUDIO 4A — Design Tokens
+   Concepto: Sofisticación por sustracción
+   Paleta: Negro Carbón · Rojo Estudio · Gris Piedra · Blanco
+   ═══════════════════════════════════════════════ */
+
+@theme {
+  /* ── Paleta Oficial ─────────────────────────── */
+  --color-carbon: #1D1D1B;
+  --color-red: #B81716;
+  --color-stone: #EBEBEB;
+  --color-white: #FFFFFF;
+
+  /* ── Fondos ─────────────────────────────────── */
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #EBEBEB;
+  --color-bg-dark: #1D1D1B;
+  --color-bg-dark-elevated: #2A2A28;
+
+  /* ── Textos ─────────────────────────────────── */
+  --color-text: #1D1D1B;
+  --color-text-secondary: #5C5C5A;
+  --color-text-tertiary: #8A8A87;
+  --color-text-inverse: #FFFFFF;
+  --color-text-inverse-muted: rgba(255, 255, 255, 0.6);
+
+  /* ── Acento (uso quirúrgico) ────────────────── */
+  --color-accent: #B81716;
+  --color-accent-hover: #D41D1C;
+  --color-accent-subtle: rgba(184, 23, 22, 0.06);
+
+  /* ── Bordes ─────────────────────────────────── */
+  --color-border: #DCDCDA;
+  --color-border-subtle: #EBEBEB;
+  --color-border-dark: rgba(255, 255, 255, 0.12);
+
+  /* ── Tipografía ─────────────────────────────── */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  /* ── Escala Tipográfica ────────────────────── */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3.5rem;
+  --text-6xl: 4.5rem;
+  --text-hero: clamp(3rem, 8vw, 7rem);
+  --text-statement: clamp(2rem, 5vw, 4rem);
+
+  /* ── Pesos ──────────────────────────────────── */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* ── Line Heights ───────────────────────────── */
+  --leading-tight: 1.05;
+  --leading-snug: 1.2;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.8;
+
+  /* ── Letter Spacing ─────────────────────────── */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.15em;
+
+  /* ── Espaciado ──────────────────────────────── */
+  --spacing-section: clamp(96px, 12vw, 180px);
+  --spacing-section-sm: clamp(64px, 8vw, 120px);
+  --spacing-block: 48px;
+  --spacing-element: 24px;
+  --spacing-tight: 16px;
+  --spacing-micro: 8px;
+
+  /* ── Layout ─────────────────────────────────── */
+  --max-width: 1440px;
+  --max-width-content: 1200px;
+  --max-width-text: 1024px;
+  --max-width-narrow: 540px;
+  --grid-gutter: clamp(16px, 2vw, 32px);
+
+  /* ── Radios ─────────────────────────────────── */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  /* ── Sombras ────────────────────────────────── */
+  --shadow-subtle: 0 1px 2px rgba(29, 29, 27, 0.04);
+  --shadow-sm: 0 2px 8px rgba(29, 29, 27, 0.06);
+  --shadow-md: 0 4px 16px rgba(29, 29, 27, 0.08);
+
+  /* ── Transiciones ───────────────────────────── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 350ms;
+  --duration-slow: 700ms;
+  --duration-reveal: 1000ms;
+}
+
+/* ═══════════════════════════════════════════════
+   GLOBAL STYLES
+   En @layer base para no bloquear utilities de Tailwind
+   ═══════════════════════════════════════════════ */
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-light);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  h1 {
+    font-weight: var(--font-weight-regular);
+    line-height: var(--leading-tight);
+  }
+
+  p {
+    line-height: var(--leading-normal);
+    max-width: var(--max-width-text);
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-text-inverse);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--duration-normal) var(--ease-out-quart);
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATION UTILITIES (GSAP targets)
+   ═══════════════════════════════════════════════ */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--duration-reveal) var(--ease-out-expo),
+              transform var(--duration-reveal) var(--ease-out-expo);
+}
+
+[data-line] {
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width var(--duration-slow) var(--ease-out-expo);
+}
+
+[data-line].is-revealed {
+  width: 48px;
+}
+
+.parallax-wrap {
+  overflow: hidden;
+}
+
+.parallax-wrap img,
+.parallax-wrap video {
+  will-change: transform;
+  scale: 1.12;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLL INDICATOR
+   ═══════════════════════════════════════════════ */
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s var(--ease-in-out-quart) infinite;
+}
