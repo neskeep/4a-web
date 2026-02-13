@@ -21,12 +21,12 @@ const joinedText = computed(() => {
     aria-hidden="true"
   >
     <div
-      class="flex whitespace-nowrap"
+      class="flex w-max whitespace-nowrap"
       :class="reverse ? 'animate-marquee-reverse' : 'animate-marquee'"
       :style="{ animationDuration: `${speed}s` }"
     >
-      <span class="font-display text-3xl" style="font-weight: 300">{{ joinedText }}</span>
-      <span class="font-display text-3xl" style="font-weight: 300">{{ joinedText }}</span>
+      <span class="flex-shrink-0 font-display text-3xl" style="font-weight: 300">{{ joinedText }}</span>
+      <span class="flex-shrink-0 font-display text-3xl" style="font-weight: 300">{{ joinedText }}</span>
     </div>
   </div>
 </template>
