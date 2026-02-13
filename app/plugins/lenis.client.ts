@@ -14,5 +14,11 @@ export default defineNuxtPlugin(() => {
   }
   requestAnimationFrame(raf)
 
+  // Scroll to top on every route change
+  const router = useRouter()
+  router.afterEach((_to, _from) => {
+    lenis.scrollTo(0, { immediate: true })
+  })
+
   return { provide: { lenis } }
 })

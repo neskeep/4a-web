@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { $gsap } = useNuxtApp()
+const route = useRoute()
 const navigation = useNavigationStore()
 const ui = useUiStore()
 const { menuItems } = storeToRefs(navigation)
@@ -7,8 +8,21 @@ const { isMobileMenuOpen, isNavbarScrolled, navbarTheme } = storeToRefs(ui)
 
 useNavbarScroll()
 
+// Apply navbar theme from page meta on route change (immediate = on first load too)
+watch(() => route.meta.navbarTheme as 'light' | 'dark' | undefined, (theme) => {
+  ui.navbarTheme = theme || 'light'
+}, { immediate: true })
+
 // Logo: scrolled siempre dark, sin scroll depende del tema del hero
 const logoDark = computed(() => isNavbarScrolled.value || navbarTheme.value === 'dark')
+
+// Links: oscuros cuando scrolled O tema dark, blancos en hero oscuro
+const linkClass = computed(() => {
+  if (isNavbarScrolled.value || navbarTheme.value === 'dark') {
+    return 'text-text-secondary hover:text-accent'
+  }
+  return 'text-text-inverse hover:text-accent'
+})
 
 watch(isMobileMenuOpen, async (open) => {
   if (!open || !$gsap) return
@@ -69,11 +83,7 @@ function closeMobileMenu() {
               :to="item.path"
               class="font-body text-sm uppercase tracking-wide transition-colors duration-350"
               :style="{ transitionTimingFunction: 'var(--ease-out-quart)' }"
-              :class="[
-                isNavbarScrolled
-                  ? 'text-text-secondary hover:text-accent'
-                  : 'text-text-inverse-muted hover:text-accent',
-              ]"
+              :class="linkClass"
             >
               {{ item.name }}
             </NuxtLink>

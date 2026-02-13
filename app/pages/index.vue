@@ -1,4 +1,6 @@
 <script setup lang="ts">
+definePageMeta({ navbarTheme: 'light' })
+
 const route = useRoute()
 
 const variant = computed(() => {
