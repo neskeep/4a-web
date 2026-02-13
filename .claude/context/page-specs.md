@@ -15,101 +15,52 @@
 
 ## HOME (`/`)
 
-### Hero Section
-- Video fullscreen (muted, autoplay, loop) como fondo
-- Overlay gradiente: `linear-gradient(to top, rgba(29,29,27,0.5) 0%, transparent 50%)`
-- Headline en `text-hero`, `font-display`, peso regular, color white
-  - "Experiencia y rebeldía."
-  - Subline (`text-xl`, `font-body`, light): "Pensar sin pausa, crear sin miedo."
-- Posición texto: tercio inferior izquierdo del viewport
-- Entrada: fade + translateY, línea por línea, delay 0.2s
-- Scroll indicator: línea vertical 1px, 40px alto, pulsa opacity (loop sutil). "Scroll" debajo.
-- **NO slider/carousel. Un solo video continuo.**
+> Documento detallado: [`.claude/context/homepage-architecture.md`](homepage-architecture.md)
 
-### Manifiesto Section
-- Fondo: `bg` (#FFF)
-- `UiSectionLabel`: línea roja + "ESTUDIO 4A"
-- Statement en `text-statement`, `font-display`, light, centrado:
-  > "Somos la evolución de 40 años de oficio global, fusionada con la energía de una generación que se niega a repetir fórmulas."
-- Max-width: 540px, centrado
-- Tres métricas horizontal (`UiCounter`): "40+ Años" · "X Proyectos" · "X Países"
-- Animación: texto reveal al scroll, counters al entrar viewport
-
-### Proyectos Destacados
-- Fondo: `bg` (#FFF)
-- `UiSectionLabel`: línea roja + "PROYECTOS"
-- Heading: "Obras seleccionadas" `text-3xl`, `font-display`
-- **Grid asimétrico:**
-  ```
-  Fila 1: [──── 65% ────] [── 35% ──]
-  Fila 2: [── 50% ──] [── 50% ──]
-  Fila 3: [────────── 100% ──────────]
-  ```
-- Cada proyecto: imagen parallax, nombre (`font-display`, `text-2xl`, white, text-shadow), categoría (`text-xs`, UPPERCASE, tertiary)
-- Hover: scale 1.02, overlay sutil
-- Stagger reveal
-- CTA: "Ver todos los proyectos →"
-
-### Filosofía Section
-- **Sección oscura**: `bg-dark` (#1D1D1B)
-- `UiSectionLabel`: línea roja + "FILOSOFÍA" (color `inverse-muted`)
-- Dos columnas:
-  - **Izquierda (55%)**: "Human to Human" `text-5xl`, `font-display`, inverse + párrafo
-  - **Derecha (45%)**: Imagen con parallax
-- Debajo: `UiMarquee` "ESPACIO · LUGAR · SENSORIAL · COLOR · FRICCIÓN · MATIZ"
-  - `font-display`, `text-3xl`, `inverse-muted` (opacity 0.3), scroll lento
-
-### El Estudio (Studio Preview)
-- Fondo: `bg-alt` (#EBEBEB) — diferenciación sutil
-- `UiSectionLabel`: línea roja + "EL ESTUDIO"
-- Layout editorial: foto grande del equipo + texto "Más que una oficina, un manifiesto vivo."
-- CTA: "Conocer al equipo →"
-
-### Contact CTA
-- Fondo: `bg-dark` (#1D1D1B)
-- Centrado: "Conversemos" `text-5xl`, `font-display`, inverse
-- Subtexto + `UiButton` inverse + link WhatsApp discreto
+6 secciones en secuencia narrativa: Hero (video fullscreen) → Manifiesto (statement + métricas) → Proyectos Destacados (grid asimétrico 65/35, 50/50, 100) → Filosofía (sección oscura, "Human to Human" + marquee) → El Estudio (preview + CTA) → Contact CTA ("Conversemos").
+Arco persuasivo: Emoción → Razón → Confianza → Acción. Componentes en `components/sections/home/`.
 
 ---
 
 ## NOSOTROS (`/nosotros`)
 
-- Historia del estudio (Palza Asociados → Estudio 4A)
-- Equipo: grid de miembros con fotos + roles
-- Valores y filosofía "Human to Human" expandida
-- Timeline visual (40+ años de trayectoria)
+> Documento detallado: [`.claude/context/studio-architecture.md`](studio-architecture.md)
+
+9 secciones: Hero Estudio → Origen → Visión + Premisas → Michael Palza → Equipo → El Galpón → Método → Trayectoria → CTA.
+Arco emocional: Historia → Convicción → Respeto → Confianza → Deseo.
+Componentes en `components/sections/about/`.
 
 ---
 
-## PROYECTOS (`/proyectos`)
+## PROYECTOS (`/proyectos`) y DETALLE (`/proyectos/[slug]`)
 
-### Grid de Proyectos
-- Filtros por categoría usando tabs (Reka UI `TabsRoot`)
-- Grid asimétrico (no uniforme)
-- Cada card: imagen, nombre proyecto, categoría, ubicación
-- Hover: scale 1.02 + datos overlay
+> Documento detallado: [`.claude/context/projects-architecture.md`](projects-architecture.md)
 
-### Detalle (`/proyectos/[slug]`)
-- `ProjectHero`: imagen principal fullwidth
-- `ProjectNarrative`: texto del proyecto, 2 columnas
-- `ProjectGallery`: galería de imágenes (lightbox con Reka UI `DialogRoot`)
-- `ProjectMeta`: ficha técnica (ubicación, área, año, categoría)
+Sistema de dos páginas: índice (galería curada) + detalle (inmersión en la obra).
+
+**Índice** — 3 secciones: Hero tipográfico (sin imagen, filtros simples) → Grid asimétrico fijo (patrón A-B-C cada 5 proyectos) → CTA.
+**Detalle** — 5 secciones: Hero imagen (90vh) → Ficha técnica → Narrativa editorial (texto + imágenes intercaladas) → Galería expandida (grid variado) → Siguiente proyecto.
+
+Modelo de datos TypeScript: `Project` + `Image`. Componentes en `components/sections/projects/` y `components/project/`.
 
 ---
 
 ## JOURNAL (`/journal`)
 
-- Lista de artículos / novedades del estudio
-- Card editorial: imagen + título + extracto + fecha
-- Layout 2 columnas desktop, 1 columna mobile
+> Documento detallado: [`.claude/context/journal-architecture.md`](journal-architecture.md)
+
+**Índice** — 4 secciones: Hero tipográfico (filtros por tipo) → Entrada destacada (2 cols 55/45) → Grid uniforme 3 cols → CTA + Footer.
+**Detalle** — 5 secciones: Header centrado (tag + título + fecha) → Imagen principal → Contenido editorial (columna 680px + imágenes expandidas) → Entradas relacionadas (3) → Footer.
+
+4 tipos de contenido: Ensayo, Proyecto, Proceso, Referencia. ~10-15 publicaciones/año.
+Modelo de datos TypeScript: `JournalEntry`. Nuxt Content como CMS. Componentes en `components/sections/journal/` y `components/journal/`.
 
 ---
 
 ## CONTACTO (`/contacto`)
 
-- Formulario: nombre, email, teléfono, mensaje
-- Validación con Zod
-- Labels accesibles (Reka UI `Label`)
-- Datos del estudio: dirección, teléfono, email
-- Mapa (opcional)
-- Horarios de atención
+> Documento detallado: [`.claude/context/contact-architecture.md`](contact-architecture.md)
+
+3 secciones: Hero + Formulario (2 columnas: invitación + form) → Ubicación + Mapa → Footer (sin CTA previo).
+Formulario: 5 campos (inputs con solo línea inferior), validación en tiempo real, envío vía server route + Resend.
+Canales alternativos: email, teléfono, WhatsApp. Componentes en `components/sections/contact/`.

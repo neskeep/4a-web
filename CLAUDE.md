@@ -19,6 +19,10 @@ Sitio web institucional para Estudio 4A, estudio boutique de arquitectura en Bol
 | [`.claude/context/tech-stack.md`](.claude/context/tech-stack.md) | Stack completo, reglas Tailwind v4, estructura directorios, workflow |
 | [`.claude/context/references.md`](.claude/context/references.md) | Steven Holl, Sommet, Lumarra, Dwellis — qué tomamos de cada uno |
 | [`.claude/context/homepage-architecture.md`](.claude/context/homepage-architecture.md) | Arquitectura narrativa del homepage: lógica de recorrido, ritmo visual, 8 secciones detalladas |
+| [`.claude/context/studio-architecture.md`](.claude/context/studio-architecture.md) | Arquitectura narrativa de la página Estudio: lógica de recorrido, ritmo visual, 9 secciones detalladas |
+| [`.claude/context/projects-architecture.md`](.claude/context/projects-architecture.md) | Arquitectura de Proyectos: índice (grid curado + filtros) y detalle (narrativa + galería), modelo de datos |
+| [`.claude/context/contact-architecture.md`](.claude/context/contact-architecture.md) | Arquitectura de Contacto: formulario editorial, canales directos, ubicación + mapa, implementación backend |
+| [`.claude/context/journal-architecture.md`](.claude/context/journal-architecture.md) | Arquitectura de Journal: índice (destacada + grid 3 cols + filtros) y detalle (lectura editorial + Nuxt Content), modelo de datos |
 
 ## Decisiones Registradas
 
