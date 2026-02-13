@@ -3,6 +3,7 @@ const { $gsap } = useNuxtApp()
 
 const sectionRef = ref<HTMLElement>()
 const timelines: ReturnType<typeof $gsap.timeline>[] = []
+const parallaxTweens: ReturnType<typeof $gsap.to>[] = []
 
 const projects = [
   {
@@ -131,10 +132,30 @@ onMounted(() => {
     )
     timelines.push(tl)
   }
+
+  // Parallax on project images
+  sectionRef.value.querySelectorAll<HTMLElement>('[data-parallax-wrap]').forEach((wrap) => {
+    const img = wrap.querySelector('img')
+    if (!img) return
+
+    $gsap.set(img, { yPercent: -4 })
+    const tween = $gsap.to(img, {
+      yPercent: 4,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: wrap,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+      },
+    })
+    parallaxTweens.push(tween)
+  })
 })
 
 onUnmounted(() => {
   timelines.forEach(tl => tl.kill())
+  parallaxTweens.forEach(tw => tw.kill())
 })
 </script>
 
@@ -164,14 +185,15 @@ onUnmounted(() => {
             style="opacity: 0; transform: translateY(30px)"
           >
             <div
+              data-parallax-wrap
               class="relative overflow-hidden rounded-radius-sm"
               :style="`background: ${projects[0].gradient}`"
             >
               <NuxtImg
                 :src="projects[0].image"
                 :alt="projects[0].title"
-                class="aspect-[16/10] w-full object-cover transition-transform duration-[600ms] motion-safe:group-hover:scale-[1.02]"
-                style="transition-timing-function: var(--ease-out-quart)"
+                class="aspect-[16/10] w-full object-cover transition-transform duration-[600ms] will-change-transform motion-safe:group-hover:scale-[1.02]"
+                style="transition-timing-function: var(--ease-out-quart); scale: 1.12"
                 loading="lazy"
               />
               <div
@@ -194,14 +216,15 @@ onUnmounted(() => {
             style="opacity: 0; transform: translateY(30px)"
           >
             <div
+              data-parallax-wrap
               class="relative overflow-hidden rounded-radius-sm"
               :style="`background: ${projects[1].gradient}`"
             >
               <NuxtImg
                 :src="projects[1].image"
                 :alt="projects[1].title"
-                class="aspect-[16/10] w-full object-cover transition-transform duration-[600ms] lg:aspect-[3/4] motion-safe:group-hover:scale-[1.02]"
-                style="transition-timing-function: var(--ease-out-quart)"
+                class="aspect-[16/10] w-full object-cover transition-transform duration-[600ms] lg:aspect-[3/4] will-change-transform motion-safe:group-hover:scale-[1.02]"
+                style="transition-timing-function: var(--ease-out-quart); scale: 1.12"
                 loading="lazy"
               />
               <div
@@ -227,14 +250,15 @@ onUnmounted(() => {
             style="opacity: 0; transform: translateY(30px)"
           >
             <div
+              data-parallax-wrap
               class="relative overflow-hidden rounded-radius-sm"
               :style="`background: ${projects[2].gradient}`"
             >
               <NuxtImg
                 :src="projects[2].image"
                 :alt="projects[2].title"
-                class="aspect-[16/10] w-full object-cover transition-transform duration-[600ms] lg:aspect-[3/4] motion-safe:group-hover:scale-[1.02]"
-                style="transition-timing-function: var(--ease-out-quart)"
+                class="aspect-[16/10] w-full object-cover transition-transform duration-[600ms] lg:aspect-[3/4] will-change-transform motion-safe:group-hover:scale-[1.02]"
+                style="transition-timing-function: var(--ease-out-quart); scale: 1.12"
                 loading="lazy"
               />
               <div
@@ -257,14 +281,15 @@ onUnmounted(() => {
             style="opacity: 0; transform: translateY(30px)"
           >
             <div
+              data-parallax-wrap
               class="relative overflow-hidden rounded-radius-sm"
               :style="`background: ${projects[3].gradient}`"
             >
               <NuxtImg
                 :src="projects[3].image"
                 :alt="projects[3].title"
-                class="aspect-[16/10] w-full object-cover transition-transform duration-[600ms] motion-safe:group-hover:scale-[1.02]"
-                style="transition-timing-function: var(--ease-out-quart)"
+                class="aspect-[16/10] w-full object-cover transition-transform duration-[600ms] will-change-transform motion-safe:group-hover:scale-[1.02]"
+                style="transition-timing-function: var(--ease-out-quart); scale: 1.12"
                 loading="lazy"
               />
               <div
@@ -289,14 +314,15 @@ onUnmounted(() => {
           style="opacity: 0; transform: translateY(30px)"
         >
           <div
+            data-parallax-wrap
             class="relative overflow-hidden rounded-radius-sm"
             :style="`background: ${projects[4].gradient}`"
           >
             <NuxtImg
               :src="projects[4].image"
               :alt="projects[4].title"
-              class="aspect-[16/10] w-full object-cover transition-transform duration-[600ms] lg:aspect-[16/9] motion-safe:group-hover:scale-[1.02]"
-              style="transition-timing-function: var(--ease-out-quart)"
+              class="aspect-[16/10] w-full object-cover transition-transform duration-[600ms] lg:aspect-[16/9] will-change-transform motion-safe:group-hover:scale-[1.02]"
+              style="transition-timing-function: var(--ease-out-quart); scale: 1.12"
               loading="lazy"
             />
             <div
