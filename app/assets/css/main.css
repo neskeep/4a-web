@@ -83,7 +83,7 @@
   --max-width: 1440px;
   --max-width-content: 1200px;
   --max-width-text: 1024px;
-  --max-width-narrow: 540px;
+  --max-width-narrow: 640px;
   --grid-gutter: clamp(16px, 2vw, 32px);
 
   /* ── Radios ─────────────────────────────────── */
