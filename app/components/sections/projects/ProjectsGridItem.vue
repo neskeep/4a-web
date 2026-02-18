@@ -23,7 +23,7 @@ const categoryLabel = computed(() => {
     residencial: 'Residencial',
     corporativo: 'Corporativo',
     urbano: 'Urbano',
-    cultural: 'Cultural',
+    comercial: 'Comercial',
   }
   return map[props.project.category] || props.project.category
 })
@@ -59,7 +59,7 @@ onUnmounted(() => {
       class="group block"
     >
       <div
-        class="parallax-wrap overflow-hidden rounded-[var(--radius-sm)]"
+        class="image-editorial parallax-wrap overflow-hidden rounded-[var(--radius-sm)]"
         :style="aspectStyle"
       >
         <img
@@ -67,13 +67,9 @@ onUnmounted(() => {
           :src="project.heroImage.src"
           :alt="project.heroImage.alt"
           loading="lazy"
-          class="h-full w-full object-cover transition-transform duration-[600ms] motion-safe:group-hover:scale-[1.02]"
-          style="transition-timing-function: var(--ease-out-quart); scale: 1.12"
+          class="h-full w-full object-cover"
+          style="scale: 1.12"
         >
-        <div
-          class="absolute inset-0 opacity-0 transition-opacity duration-[600ms] motion-safe:group-hover:opacity-100"
-          style="background: linear-gradient(to top, rgba(29,29,27,0.08) 0%, transparent 50%)"
-        />
       </div>
       <h3
         class="mt-4 font-display text-xl text-text transition-colors duration-[350ms] lg:text-2xl motion-safe:group-hover:text-accent"

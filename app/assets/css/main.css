@@ -74,6 +74,7 @@
   /* ── Espaciado ──────────────────────────────── */
   --spacing-section: clamp(96px, 12vw, 180px);
   --spacing-section-sm: clamp(64px, 8vw, 120px);
+  --spacing-section-lg: clamp(120px, 15vw, 240px);
   --spacing-block: 48px;
   --spacing-element: 24px;
   --spacing-tight: 16px;
@@ -208,4 +209,16 @@
 
 .animate-pulse-subtle {
   animation: pulse-subtle 2s var(--ease-in-out-quart) infinite;
+}
+
+/* ═══════════════════════════════════════════════
+   EDITORIAL IMAGE HOVER
+   Zoom lentísimo, casi imperceptible — como Hyde
+   ═══════════════════════════════════════════════ */
+
+.image-editorial img {
+  transition: transform 8s var(--ease-out-quart);
+}
+.image-editorial:hover img {
+  transform: scale(1.015);
 }

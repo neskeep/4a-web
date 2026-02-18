@@ -24,6 +24,7 @@ const nextProject = computed(() => {
     <ProjectHero :project="project" />
     <ProjectSpecs :project="project" />
     <ProjectNarrative :project="project" />
+    <ProjectPlans :plans="project.plans" :sketches="project.sketches" />
     <ProjectGallery :images="project.images" />
     <ProjectNext :next="nextProject" />
   </div>

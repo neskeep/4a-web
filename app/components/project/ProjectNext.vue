@@ -15,7 +15,7 @@ const categoryLabel = (category: string) => {
     residencial: 'Residencial',
     corporativo: 'Corporativo',
     urbano: 'Urbano',
-    cultural: 'Cultural',
+    comercial: 'Comercial',
   }
   return map[category] || category
 }

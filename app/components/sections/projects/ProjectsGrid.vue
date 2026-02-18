@@ -99,7 +99,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section ref="gridRef" class="bg-bg-alt py-section">
+  <section ref="gridRef" class="bg-bg-alt pt-block pb-section">
     <div class="mx-auto max-w-[var(--max-width-content)] px-8 lg:px-16">
       <div class="space-y-block">
         <div

@@ -5,10 +5,15 @@ export interface ProjectImage {
   caption?: string
 }
 
+export interface PlanImage {
+  src: string
+  label: string
+}
+
 export interface Project {
   slug: string
   title: string
-  category: 'residencial' | 'corporativo' | 'urbano' | 'cultural'
+  category: 'residencial' | 'corporativo' | 'urbano' | 'comercial'
 
   // Ficha tecnica
   location: string
@@ -23,8 +28,19 @@ export interface Project {
   description: string[]
 
   // Imagenes
+  bgImage?: string
   heroImage: ProjectImage
   images: ProjectImage[]
+
+  // Planos y bocetos
+  plans?: PlanImage[]
+  sketches?: PlanImage[]
+
+  // Publicacion
+  publication?: {
+    name: string
+    file?: string
+  }
 
   // Metadata
   order: number

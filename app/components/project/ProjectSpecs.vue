@@ -15,7 +15,7 @@ const categoryLabel = computed(() => {
     residencial: 'Residencial',
     corporativo: 'Corporativo',
     urbano: 'Urbano',
-    cultural: 'Cultural',
+    comercial: 'Comercial',
   }
   return map[props.project.category] || props.project.category
 })
@@ -31,6 +31,10 @@ const specs = computed(() => {
 
   if (props.project.collaborators?.length) {
     items.push({ label: 'Colaboradores', value: props.project.collaborators.join(', ') })
+  }
+
+  if (props.project.publication) {
+    items.push({ label: 'Publicación', value: props.project.publication.name })
   }
 
   return items
