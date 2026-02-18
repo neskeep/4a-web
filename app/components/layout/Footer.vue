@@ -7,7 +7,7 @@ const currentYear = new Date().getFullYear()
     <!-- Divider superior -->
     <div class="h-px w-full bg-border-dark" />
 
-    <div class="mx-auto max-w-[var(--max-width-content)] px-8 pt-block pb-element lg:px-16">
+    <div class="mx-auto max-w-[var(--max-width)] px-6 pt-block pb-element lg:px-8">
       <!-- Grid principal: mobile 1col, tablet 2col, desktop 4col -->
       <div class="grid grid-cols-1 gap-element sm:grid-cols-2 sm:gap-block lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <!-- Col 1: Marca (en tablet ocupa toda la fila) -->

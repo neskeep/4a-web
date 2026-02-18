@@ -49,10 +49,18 @@ onUnmounted(() => {
 <template>
   <section
     ref="sectionRef"
-    class="bg-carbon"
+    class="relative overflow-hidden bg-carbon"
     style="padding: clamp(100px, 15vw, 240px) clamp(24px, 5vw, 64px)"
   >
-    <div class="mx-auto flex max-w-[var(--max-width-content)] flex-col items-start gap-10 lg:flex-row lg:items-end lg:justify-between">
+    <!-- Floating sketch -->
+    <img
+      src="/bg-conversemos-sketch-2.webp"
+      alt=""
+      class="pointer-events-none absolute right-0 top-0 hidden select-none lg:block"
+      style="opacity: 0.15; width: clamp(400px, 50vw, 750px); translate: -10% 20%; z-index: 0; mask-image: radial-gradient(ellipse at center, black 55%, transparent 85%); -webkit-mask-image: radial-gradient(ellipse at center, black 55%, transparent 85%)"
+    >
+
+    <div class="relative z-[1] mx-auto flex max-w-[var(--max-width-content)] flex-col items-start gap-10 lg:flex-row lg:items-end lg:justify-between">
       <div>
         <h2
           data-contact="heading"
